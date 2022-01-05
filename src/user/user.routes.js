@@ -5,9 +5,10 @@ const {
   updateUser,
   deleteUser,
 } = require("./user.controllers");
+const { hashPassword } = require("../middleware");
 const userRouter = Router();
 
-userRouter.post("/user", addUser);
+userRouter.post("/user", hashPassword, addUser);
 userRouter.get("/user/:username", listUser);
 userRouter.put("/user", updateUser);
 userRouter.delete("/user/:username", deleteUser);
